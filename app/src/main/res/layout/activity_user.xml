@@ -9,7 +9,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/userActivityTVL"
-        android:hint="This is the second activity"/>
+        android:text="Welcome"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userActivityTVL2"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:paddingStart="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/userActivityTVL" />
+
+
 
 
 </RelativeLayout>

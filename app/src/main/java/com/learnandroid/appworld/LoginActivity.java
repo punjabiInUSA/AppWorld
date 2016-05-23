@@ -39,7 +39,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String str =  mUsername.getText().toString();
+
                 Intent i = new Intent(LoginActivity.this, UserActivity.class);
+                i.putExtra("Username", str);
+
                 startActivity(i);
 
             }
