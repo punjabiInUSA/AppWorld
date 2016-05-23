@@ -53,4 +53,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/et_password_login" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Signup"
+        android:id="@+id/btn_signup"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/btn_login"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/et_password_login" />
+
 </RelativeLayout>
