@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity{
     private String mpV;
     private String mcpV;
 
-
+private DatabaseHelper mDBHelper;
 
 
     @Override
@@ -90,6 +90,14 @@ public class SignupActivity extends AppCompatActivity{
                 Toast.makeText(SignupActivity.this, "Passwords don't match",
                         Toast.LENGTH_SHORT).show();
             }
+                else {
+
+                    Contact con = new Contact();
+
+                    con.setName(mfnV);
+                    con.setPass(mpV);
+                    con.setUsername(munV);
+                }
 
             }
         });

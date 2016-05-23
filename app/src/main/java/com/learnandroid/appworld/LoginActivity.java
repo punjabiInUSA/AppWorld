@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -19,6 +20,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
 
     private Button mSignupBtn;
+
+    private DatabaseHelper mDBHelper;
+
+    private String mGetPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +50,20 @@ public class LoginActivity extends AppCompatActivity {
 
                 String str =  mUsername.getText().toString();
 
-                Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                i.putExtra("Username", str);
+                mGetPassword = mDBHelper.searchPass(str);
 
-                startActivity(i);
+                if(mPassword.equals(mGetPassword)){
+                    Intent i = new Intent(LoginActivity.this, UserActivity.class);
+                    i.putExtra("Username", str);
+
+                    startActivity(i);
+
+                }
+
+                    else {
+                    Toast.makeText(LoginActivity.this, "Cannot find username", Toast.LENGTH_SHORT)
+                            .show();
+                }
 
             }
         });
