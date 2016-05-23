@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity{
     private String munV;
     private String mpV;
     private String mcpV;
+    private String mIdV;
 
 private DatabaseHelper mDBHelper;
 
@@ -66,23 +67,17 @@ private DatabaseHelper mDBHelper;
 
         mSignupBtn = (Button) findViewById(R.id.btn_register_signup);
 
-        mfnV = mFirstNet.getText().toString();
-        mlnV = mLastet.getText().toString();
-        munV = mUserNet.getText().toString();
-        mpV = mPasset.getText().toString();
-        mcpV = mConPasset.getText().toString();
 
 
         mSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mfnV = mFirstNet.getText().toString();
-                mlnV = mLastet.getText().toString();
-                munV = mUserNet.getText().toString();
-                mpV = mPasset.getText().toString();
-                mcpV = mConPasset.getText().toString();
-                mpV = mPasset.getText().toString();
-                mcpV = mConPasset.getText().toString();
+
+        mfnV = mFirstNet.getText().toString();
+        mlnV = mLastet.getText().toString();
+        munV = mUserNet.getText().toString();
+        mpV = mPasset.getText().toString();
+        mcpV = mConPasset.getText().toString();
 
 
                 if(!mpV.equals(mcpV)){
@@ -93,10 +88,12 @@ private DatabaseHelper mDBHelper;
                 else {
 
                     Contact con = new Contact();
-
                     con.setName(mfnV);
-                    con.setPass(mpV);
                     con.setUsername(munV);
+                    con.setPass(mpV);
+                    if(mDBHelper !=null) {
+                        mDBHelper.insertContactInfo(con);
+                    }
                 }
 
             }

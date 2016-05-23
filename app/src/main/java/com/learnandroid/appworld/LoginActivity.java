@@ -21,9 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button mSignupBtn;
 
-    private DatabaseHelper mDBHelper;
+    private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
-    private String mGetPassword;
+    private String mAuthenticateExistence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +48,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String str =  mUsername.getText().toString();
+                String userNameString =  mUsername.getText().toString();
 
-                mGetPassword = mDBHelper.searchPass(str);
+                String passWordString = mPassword.getText().toString();
 
-                if(mPassword.equals(mGetPassword)){
+                mAuthenticateExistence = mDBHelper.searchPass(userNameString);
+
+                if(passWordString.equals(mAuthenticateExistence)){
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                    i.putExtra("Username", str);
-
+                    i.putExtra("Username", userNameString);
                     startActivity(i);
 
                 }
-
                     else {
-                    Toast.makeText(LoginActivity.this, "Cannot find username", Toast.LENGTH_SHORT)
+                    Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT)
                             .show();
                 }
 
