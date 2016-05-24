@@ -108,9 +108,9 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                    
-                    Toast.makeText(RegisterActivity.this, "Invalid registration details", Toast.LENGTH_SHORT).show();
-
+                    else {
+                        Toast.makeText(RegisterActivity.this, "Invalid registration details", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
