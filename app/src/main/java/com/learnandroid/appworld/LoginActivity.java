@@ -55,8 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         mSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
+
             }
         });
 
@@ -83,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 mAuthenticateExistence = mDBHelper.searchPass(userNameString);
 
                 if(passWordString.equals(mAuthenticateExistence)) {
+                    finish();
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
                     i.putExtra("Username", userNameString);

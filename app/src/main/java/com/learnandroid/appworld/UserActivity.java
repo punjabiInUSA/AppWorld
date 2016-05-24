@@ -1,6 +1,7 @@
 package com.learnandroid.appworld;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ public class UserActivity extends AppCompatActivity {
     private TextView mTextUser2;
 
     private String mUserName2;
+
+    private Intent newIntent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,4 +35,15 @@ public class UserActivity extends AppCompatActivity {
             mTextUser2.setText(mUserName2);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        newIntent = new Intent(UserActivity.this,LoginActivity.class);
+        startActivity(newIntent);
+        finish();
+
+    }
+
+
 }

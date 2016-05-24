@@ -1,12 +1,11 @@
 package com.learnandroid.appworld;
 
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,6 +39,9 @@ public class RegisterActivity extends AppCompatActivity{
     private String mpasswordString;
     private String mconPassString;
     private String mIdString;
+
+    private View baseView;
+    private Intent newIntent;
 
 private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
@@ -89,7 +91,7 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
                     con.setName(mfistNameString);
                     con.setUsername(muserNameString);
                     con.setPass(mpasswordString);
-                    if (mDBHelper != null) {
+                    if (mDBHelper != null && !mfistNameString.isEmpty() && !muserNameString.isEmpty() && !mpasswordString.isEmpty()) {
                         mDBHelper.insertContactInfo(con);
                         mFirstName.getText().clear();
                         mFirstName.setHint("");
@@ -99,19 +101,21 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
                         mPassword.setHint("");
                         mConPassword.getText().clear();
                         mConPassword.setHint("");
+                        newIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(newIntent);
+                        finish();
                         Toast.makeText(RegisterActivity.this, "Registration Successful",
                                 Toast.LENGTH_SHORT).show();
                     }
-                }
 
+                    
+                    Toast.makeText(RegisterActivity.this, "Invalid registration details", Toast.LENGTH_SHORT).show();
+
+                }
             }
+
         });
 
-        try{InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);}
-        catch(Exception e){
-            e.getStackTrace();
-        }
-
     }
+
 }
