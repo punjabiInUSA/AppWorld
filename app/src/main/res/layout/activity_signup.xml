@@ -4,8 +4,13 @@
     android:layout_height="match_parent"
     xmlns:ndroid="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/first_name"
+        android:text="@string/full_name"
         android:id="@+id/firstName_signup"
         android:layout_marginTop="30dp"
         />
@@ -28,26 +33,9 @@
     <EditText
         android:layout_width="272dp"
         android:layout_height="wrap_content"
-        android:hint="Enter First Name"
+        android:hint="Enter Name"
         android:textSize="12sp"
-        android:id="@+id/et_firstname_signup" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/last_name"
-        android:id="@+id/LasttName_signup"
-        android:layout_marginTop="30dp"
-        />
-
-    <EditText
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_lastname_signup"
-        android:textSize="12sp"
-        android:hint="enter last name" />
+        android:id="@+id/et_name_signup" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,6 +65,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_pass_signup"
         android:textSize="12sp"
+        android:inputType="textPassword"
         android:hint="enter password" />
 
     <TextView
@@ -92,6 +81,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_confirm_pass_signup"
         android:textSize="12sp"
+        android:inputType="textPassword"
         android:hint="confirm password" />
 
     <Button
@@ -99,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_signup"
-        android:id="@+id/btn_register_signup"
+        android:id="@+id/btn_signup"
         android:layout_gravity="center_horizontal" />
-
-
+</LinearLayout>
+</ScrollView>
 </LinearLayout>

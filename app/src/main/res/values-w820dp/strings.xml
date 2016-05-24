@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="signup_page_header">Enter details below to register</string>
-    <string name="first_name">First Name</string>
+    <string name="full_name">Full Name</string>
     <string name="last_name">Last Name</string>
     <string name="new_username_signup">Username</string>
     <string name="password_signup">Password</string>

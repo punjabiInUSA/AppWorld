@@ -1,7 +1,7 @@
 package com.learnandroid.appworld;
 
 
-public class Contact {
+public class userInfo {
 
     private int id;
 

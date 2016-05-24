@@ -11,26 +11,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "contact.db";
+    private static final String DATABASE_NAME = "info.db";
 
-    private static final String TABLE_NAME = "contacttable";
+    private static final String TABLE_NAME = "information";
 
-    private static final String COLUMN_FIRST_NAME = "firstname";
+    private static final String COLUMN_FIRST_NAME = "fName";
 
-    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_PASSWORD = "pwd";
 
-    private static final String COLUMN_UNAME = "username";
+    private static final String COLUMN_UNAME = "uName";
 
     private static final String COLUMN_ID = "id";
 
     private SQLiteDatabase msqlDB;
 
-    private static final String TABLE_CREATE = "create table contacttable (id integer primary key not null,"
-            + "firstname text not null, password text not null, username text not null);";
+    private static final String TABLE_CREATE = "create table information (id integer primary key not null,"
+            + "fName text not null, pwd text not null, uName text not null);";
 
-    private static final String SEARCH_QUERY = "select username, password from " +TABLE_NAME;
+    private static final String SEARCH_QUERY = "select uName, pwd from " +TABLE_NAME;
 
-    private static final String ANOTHER_QUERY = "select * from contacttable";
+    private static final String ANOTHER_QUERY = "select * from " +TABLE_NAME;
 
 
 
@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertContactInfo(Contact contact) {
+    public void insertContactInfo(userInfo usrinfo) {
 
         msqlDB = this.getWritableDatabase();
 
@@ -65,9 +65,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count =  c.getCount();
 
         conValues.put(COLUMN_ID,count);
-        conValues.put(COLUMN_FIRST_NAME,contact.getName());
-        conValues.put(COLUMN_UNAME,contact.getUsername());
-        conValues.put(COLUMN_PASSWORD,contact.getPass());
+        conValues.put(COLUMN_FIRST_NAME,usrinfo.getName());
+        conValues.put(COLUMN_UNAME,usrinfo.getUsername());
+        conValues.put(COLUMN_PASSWORD,usrinfo.getPass());
 
         msqlDB.insert(TABLE_NAME,null,conValues);
         msqlDB.close();
@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         msqlDB =  this.getReadableDatabase();
         Cursor cursor = msqlDB.rawQuery(SEARCH_QUERY,null);
         String pass, userN;
-        pass = "not found";
+        pass = "no password detected";
 
         if(cursor.moveToFirst())
         {
