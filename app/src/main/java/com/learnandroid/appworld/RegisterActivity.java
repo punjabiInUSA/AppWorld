@@ -11,39 +11,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity {
 
-    private TextView mFirstNameLabel;
-
-    private TextView mLastNameLabel;
-    private TextView mUserNameLabel;
-
-    private TextView mPassLabel;
-    private TextView mConfirmPassLabel;
-    private Button mSignupBtn;
-
-    private EditText mFirstName;
-    private EditText mUserName;
-
-    private EditText mLastet;
-
-    private EditText mPassword;
-
-    private EditText mConPassword;
-
-
-    private String mfistNameString;
-
-    private String mlnV;
-    private String muserNameString;
-    private String mpasswordString;
-    private String mconPassString;
-    private String mIdString;
-
+    private TextView mFirstNameLabel, mLastNameLabel, mUserNameLabel, mPassLabel, mConfirmPassLabel;
+    private Button mSignupBtn, mBtnBack;
+    private EditText mFirstName, mUserName, mPassword, mConPassword;
+    private String mfistNameString, muserNameString, mpasswordString, mconPassString;
     private View baseView;
     private Intent newIntent;
 
-private DatabaseHelper mDBHelper = new DatabaseHelper(this);
+    private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
 
     @Override
@@ -54,12 +31,10 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
     }
 
 
-
     private void init() {
 
 
         mFirstName = (EditText) findViewById(R.id.et_name_signup);
-
 
         mPassword = (EditText) findViewById(R.id.et_pass_signup);
 
@@ -67,31 +42,55 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
         mUserName = (EditText) findViewById(R.id.et_username_signup);
 
+        backEventHandler();
+
+        registerEventHandler();
+
+    }
+
+    private void backEventHandler() {
+        mBtnBack = (Button) findViewById(R.id.btn_goback);
+
+        mBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToLogin();
+
+            }
+        });
+    }
+
+    private void registerEventHandler() {
         mSignupBtn = (Button) findViewById(R.id.btn_signup);
-
-
 
         mSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-        mfistNameString = mFirstName.getText().toString();
-        muserNameString = mUserName.getText().toString();
-        mpasswordString = mPassword.getText().toString();
-        mconPassString = mConPassword.getText().toString();
+                mfistNameString = mFirstName.getText().toString();
+                muserNameString = mUserName.getText().toString();
+                mpasswordString = mPassword.getText().toString();
+                mconPassString = mConPassword.getText().toString();
 
 
-                if(!mpasswordString.equals(mconPassString)){
-                //popup msg
-                Toast.makeText(RegisterActivity.this, "Passwords don't match",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-
+                if (mfistNameString.isEmpty() || muserNameString.isEmpty() || mpasswordString.isEmpty()
+                        || mconPassString.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Invalid registration details",
+                            Toast.LENGTH_SHORT).show();
+                } else if (mpasswordString.equals(muserNameString)) {
+                    Toast.makeText(RegisterActivity.this, "Username and Password cannot be identical",
+                            Toast.LENGTH_SHORT).show();
+                } else if (!mpasswordString.equals(mconPassString)) {
+                    //popup msg
+                    Toast.makeText(RegisterActivity.this, "Both password field must be identical",
+                            Toast.LENGTH_SHORT).show();
+                } else {
                     userInfo con = new userInfo();
                     con.setName(mfistNameString);
                     con.setUsername(muserNameString);
                     con.setPass(mpasswordString);
-                    if (mDBHelper != null && !mfistNameString.isEmpty() && !muserNameString.isEmpty() && !mpasswordString.isEmpty()) {
+                    if (mDBHelper != null && !mfistNameString.isEmpty() && !muserNameString.isEmpty()
+                            && !mpasswordString.isEmpty()) {
                         mDBHelper.insertContactInfo(con);
                         mFirstName.getText().clear();
                         mFirstName.setHint("");
@@ -101,21 +100,27 @@ private DatabaseHelper mDBHelper = new DatabaseHelper(this);
                         mPassword.setHint("");
                         mConPassword.getText().clear();
                         mConPassword.setHint("");
-                        newIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(newIntent);
-                        finish();
+                        navigateToLogin();
                         Toast.makeText(RegisterActivity.this, "Registration Successful",
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                    else {
-                        Toast.makeText(RegisterActivity.this, "Invalid registration details", Toast.LENGTH_SHORT).show();
-                    }
                 }
             }
 
         });
-
     }
 
+    private void navigateToLogin() {
+        newIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(newIntent);
+        finish();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        navigateToLogin();
+    }
 }

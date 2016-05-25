@@ -1,6 +1,7 @@
 package com.learnandroid.appworld;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.input.InputManager;
 import android.support.v7.app.AlertDialog;
@@ -19,17 +20,14 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText mUsername;
+    private EditText mUsername, mPassword;
 
-    private EditText mPassword;
-
-    private Button mLoginBtn;
-
-    private Button mSignupBtn;
+    private Button mLoginBtn, mSignupBtn;
 
     private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
-    private String mAuthenticateExistence;
+    private String mAuthenticateExistence, mUserNameString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     private void onViewLoad() {
 
         mUsername = (EditText) findViewById(R.id.et_username_login);
-
         mPassword = (EditText) findViewById(R.id.et_password_login);
-
         loginEventHandler();
-
         signupEventHandler();
 
     }
@@ -61,39 +56,29 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-        try {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
     }
 
     private void loginEventHandler() {
+
 
         mLoginBtn = (Button) findViewById(R.id.btn_login);
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                String userNameString =  mUsername.getText().toString();
-
+                mUserNameString = mUsername.getText().toString();
                 String passWordString = mPassword.getText().toString();
+                mAuthenticateExistence = mDBHelper.searchPass(mUserNameString);
 
-                mAuthenticateExistence = mDBHelper.searchPass(userNameString);
-
-                if(passWordString.equals(mAuthenticateExistence)) {
+                if (passWordString.equals(mAuthenticateExistence)) {
                     finish();
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                    i.putExtra("Username", userNameString);
+                    i.putExtra("Username", mUserNameString);
                     startActivity(i);
-
-                }
-                    else {
-                    Toast.makeText(LoginActivity.this, "Invalid credentials. Please check username and password", Toast.LENGTH_SHORT)
+                } else {
+                    Toast.makeText(LoginActivity.this, "Invalid credentials. " +
+                            "Please check username and password", Toast.LENGTH_SHORT)
                             .show();
                 }
 
@@ -101,9 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
     }
-
 
 
 }

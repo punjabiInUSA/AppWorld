@@ -9,48 +9,56 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.learnandroid.appworld.LoginActivity">
 
-
-    <EditText
-        android:layout_marginTop="100dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/et_username_login"
-        android:hint="Username"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/et_password_login"
-        android:layout_marginTop="20dp"
-        android:hint="Password"
-        android:layout_below="@+id/et_username_login"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/et_username_login"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/btn_login"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/et_password_login"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/et_password_login" />
+            <EditText
+                android:id="@+id/et_username_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:ems="10"
+                android:hint="Username"
+                android:inputType="textEmailAddress" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Signup"
-        android:id="@+id/btn_signup"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/btn_login"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/et_password_login" />
+            <EditText
+                android:id="@+id/et_password_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/et_username_login"
+                android:layout_below="@+id/et_username_login"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword" />
 
+            <Button
+                android:id="@+id/btn_login"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/et_password_login"
+                android:layout_below="@+id/et_password_login"
+                android:layout_marginTop="36dp"
+                android:text="Login" />
+
+            <Button
+                android:id="@+id/btn_signup"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/et_password_login"
+                android:layout_below="@+id/btn_login"
+                android:layout_marginTop="36dp"
+                android:text="Signup" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

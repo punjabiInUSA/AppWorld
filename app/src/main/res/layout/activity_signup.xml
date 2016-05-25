@@ -1,96 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:ndroid="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/pageHeader_signup"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/signup_page_header"
-        android:layout_marginTop="20dp"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/full_name"
-        android:id="@+id/firstName_signup"
-        android:layout_marginTop="30dp"
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Name"
-        android:textSize="12sp"
-        android:id="@+id/et_name_signup" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/new_username_signup"
-        android:id="@+id/textView"
-        android:layout_marginTop="30dp" />
+            <TextView
+                android:id="@+id/pageHeader_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/signup_page_header"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_username_signup"
-        android:textSize="12sp"
-        android:hint="enter  username" />
+            <TextView
+                android:id="@+id/firstName_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/full_name"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/password_signup"
-        android:id="@+id/tv_pass_signup"
-        android:layout_marginTop="30dp" />
+            <EditText
+                android:id="@+id/et_name_signup"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Name"
+                android:textSize="12sp" />
 
-    <EditText
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_pass_signup"
-        android:textSize="12sp"
-        android:inputType="textPassword"
-        android:hint="enter password" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/new_username_signup"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/confirm_password_signup"
-        android:id="@+id/tv_confirm_pass_signup"
-        android:layout_marginTop="30dp" />
+            <EditText
+                android:id="@+id/et_username_signup"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:hint="enter  username"
+                android:textSize="12sp" />
 
-    <EditText
-        android:layout_width="272dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_confirm_pass_signup"
-        android:textSize="12sp"
-        android:inputType="textPassword"
-        android:hint="confirm password" />
+            <TextView
+                android:id="@+id/tv_pass_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/password_signup"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_signup"
-        android:id="@+id/btn_signup"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
-</ScrollView>
+            <EditText
+                android:id="@+id/et_pass_signup"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:hint="enter password"
+                android:inputType="textPassword"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_confirm_pass_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/confirm_password_signup"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/et_confirm_pass_signup"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:hint="confirm password"
+                android:inputType="textPassword"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_signup"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/register_signup" />
+
+            <Button
+                android:id="@+id/btn_goback"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/btn_back" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
