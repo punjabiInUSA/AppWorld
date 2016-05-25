@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.learnandroid.appworld.LoginActivity">
+    tools:context="com.learnandroid.appworld.LoginActivity"
+    android:background="@color/primaryApp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,18 +48,20 @@
                 android:layout_alignStart="@+id/et_password_login"
                 android:layout_below="@+id/et_password_login"
                 android:layout_marginTop="36dp"
+                android:background="@color/primaryAppDark"
                 android:text="Login" />
 
-            <Button
-                android:id="@+id/btn_signup"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_btn_signup"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/et_password_login"
                 android:layout_below="@+id/btn_login"
-                android:layout_marginTop="36dp"
-                android:text="Signup" />
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:gravity="center_horizontal"
+                android:text="@string/tv_btn_signup_text" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

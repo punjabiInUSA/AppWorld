@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextView mFirstNameLabel, mLastNameLabel, mUserNameLabel, mPassLabel, mConfirmPassLabel;
-    private Button mSignupBtn, mBtnBack;
+    private TextView mFirstNameLabel, mLastNameLabel, mUserNameLabel, mPassLabel, mConfirmPassLabel,mBtnBack;
+    private Button mSignupBtn;
     private EditText mFirstName, mUserName, mPassword, mConPassword;
     private String mfistNameString, muserNameString, mpasswordString, mconPassString;
     private View baseView;
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void backEventHandler() {
-        mBtnBack = (Button) findViewById(R.id.btn_goback);
+        mBtnBack = (TextView) findViewById(R.id.tv_btn_goback);
 
         mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,13 +93,9 @@ public class RegisterActivity extends AppCompatActivity {
                             && !mpasswordString.isEmpty()) {
                         mDBHelper.insertContactInfo(con);
                         mFirstName.getText().clear();
-                        mFirstName.setHint("");
                         mUserName.getText().clear();
-                        mUserName.setHint("");
                         mPassword.getText().clear();
-                        mPassword.setHint("");
                         mConPassword.getText().clear();
-                        mConPassword.setHint("");
                         navigateToLogin();
                         Toast.makeText(RegisterActivity.this, "Registration Successful",
                                 Toast.LENGTH_SHORT).show();

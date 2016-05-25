@@ -4,7 +4,8 @@
     <string name="full_name">Full Name</string>
     <string name="new_username_signup">Username</string>
     <string name="password_signup">Password</string>
-    <string name="register_signup">REGISTER</string>
+    <string name="register_signup">Create Account</string>
     <string name="confirm_password_signup">Confirm Password</string>
-    <string name="btn_back">back</string>
+    <string name="btn_back">Already a member? Login</string>
+    <string name="tv_btn_signup_text">No Account yet? Create one</string>
 </resources>

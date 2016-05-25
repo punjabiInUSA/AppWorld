@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 /**
  * Contains Views and Handlers for Login Related Functionality
@@ -22,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mUsername, mPassword;
 
-    private Button mLoginBtn, mSignupBtn;
+    private TextView mSignTV;
+    private Button mLoginBtn;
 
     private DatabaseHelper mDBHelper = new DatabaseHelper(this);
 
@@ -46,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signupEventHandler() {
-        mSignupBtn = (Button) findViewById(R.id.btn_signup);
-        mSignupBtn.setOnClickListener(new View.OnClickListener() {
+        mSignTV = (TextView) findViewById(R.id.tv_btn_signup);
+        mSignTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
