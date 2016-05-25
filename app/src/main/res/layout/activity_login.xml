@@ -7,8 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.learnandroid.appworld.LoginActivity"
-    android:background="@color/primaryApp">
+    tools:context="com.learnandroid.appworld.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,6 +24,8 @@
                 android:layout_marginTop="100dp"
                 android:ems="10"
                 android:hint="Username"
+                android:textColorHint="@color/primaryAppText3"
+                android:textColor="@color/primaryAppText2"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -36,6 +37,8 @@
                 android:layout_below="@+id/et_username_login"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:textColorHint="@color/primaryAppText3"
+                android:textColor="@color/primaryAppText2"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
@@ -49,6 +52,7 @@
                 android:layout_below="@+id/et_password_login"
                 android:layout_marginTop="36dp"
                 android:background="@color/primaryAppDark"
+                android:textColor="@color/primaryAppText"
                 android:text="Login" />
 
             <TextView
@@ -61,6 +65,7 @@
                 android:layout_marginTop="16dp"
                 android:textSize="16sp"
                 android:gravity="center_horizontal"
+                android:textColor="@color/primaryAppText2"
                 android:text="@string/tv_btn_signup_text" />
         </RelativeLayout>
     </ScrollView>

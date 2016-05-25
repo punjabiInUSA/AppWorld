@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity"
-    android:background="@color/primaryApp">
+    tools:context=".UserActivity">
 
     <TextView
         android:id="@+id/userActivityTVL"
@@ -13,6 +12,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="Welcome, "
+        android:textColor="@color/primaryAppText2"
         android:textSize="20sp" />
 
     <TextView
@@ -23,6 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/userActivityTVL"
         android:paddingStart="5dp"
+        android:textColor="@color/primaryAppText2"
         android:textSize="20sp" />
 
     <Button
@@ -35,7 +36,8 @@
         android:layout_marginBottom="136dp"
         android:background="@color/primaryAppDark"
         android:ems="14"
-        android:text="Logout" />
+        android:text="Logout"
+        android:textColor="@color/primaryAppText"/>
 
 
 </RelativeLayout>

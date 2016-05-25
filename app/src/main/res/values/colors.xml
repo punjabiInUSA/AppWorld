@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFF</color>
-    <color name="primaryApp">#00BCD4</color>
-    <color name="primaryAppDark">#0097A7</color>
+    <color name="primaryApp">#2196F3</color>
+    <color name="primaryAppDark">#303F9F</color>
+    <color name="primaryAppText">#FFFFFF</color>
+    <color name="primaryAppText2">#212121</color>
+    <color name="primaryAppText3">#727272</color>
 </resources>
