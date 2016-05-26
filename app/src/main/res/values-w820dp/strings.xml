@@ -9,4 +9,7 @@
     <string name="confirm_password_signup">Confirm Password</string>
     <string name="btn_back">back</string>
     <string name="tv_btn_signup_text">No Account yet? Create one</string>
+    <string name="exit_app_dialog_title_login">EXIT APPLICATION</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
 </resources>

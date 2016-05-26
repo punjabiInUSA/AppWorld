@@ -21,7 +21,7 @@ public class UserActivity extends AppCompatActivity {
     private String mUserName2;
 
     private Intent newIntent;
-    AlertDialog.Builder mAlertDialog;
+    AlertDialog.Builder mAlertDialog, mAlert;
     Context mContext;
 
     @Override
@@ -58,29 +58,33 @@ public class UserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        AlertDialog.Builder alert = new AlertDialog.Builder(UserActivity.this,
+        mAlert = new AlertDialog.Builder(UserActivity.this,
                 R.style.AppCompatAlertDialogStyle);
-        alert.setMessage("Do you want to logout?");
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        mAlert.setMessage("Do you want to logout?");
+        mAlert.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showLogin();
             }
         });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        mAlert.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        alert.show();
+        if (mAlert != null) {
+            mAlert.show();
+        } else {
+            super.onBackPressed();
+
+        }
     }
 
     private void showLogOffDialog() {
         mAlertDialog = new AlertDialog.Builder(UserActivity.this, R.style.AppCompatAlertDialogStyle);
         mAlertDialog.setMessage("Are you sure you want to log off?");
-        mAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        mAlertDialog.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showLogin();
@@ -88,7 +92,7 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        mAlertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        mAlertDialog.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

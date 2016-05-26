@@ -20,8 +20,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:text="@string/signup_page_header"
-                android:textColor="@color/primaryAppText2"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/primaryAppText2" />
 
             <TextView
                 android:id="@+id/firstName_signup"
@@ -29,16 +29,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/full_name"
-                android:textColor="@color/primaryAppText2"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primaryAppText2" />
 
             <EditText
                 android:id="@+id/et_name_signup"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:hint="Click here to enter information"
-                android:textColorHint="@color/primaryAppText3"
+                android:maxLength="15"
+                android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
+                android:textColorHint="@color/primaryAppText3"
                 android:textSize="12sp" />
 
             <TextView
@@ -47,13 +49,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/new_username_signup"
-                android:textColor="@color/primaryAppText2"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primaryAppText2" />
 
             <EditText
                 android:id="@+id/et_username_signup"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
+                android:maxLength="15"
+                android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="12sp" />
 
@@ -63,14 +67,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/password_signup"
-                android:textColor="@color/primaryAppText2"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primaryAppText2" />
 
             <EditText
                 android:id="@+id/et_pass_signup"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:maxLength="15"
+                android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="12sp" />
 
@@ -80,14 +86,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/confirm_password_signup"
-                android:textColor="@color/primaryAppText2"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primaryAppText2" />
 
             <EditText
                 android:id="@+id/et_confirm_pass_signup"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:maxLength="15"
+                android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="12sp" />
 
@@ -95,23 +103,22 @@
                 android:id="@+id/btn_signup"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="272dp"
-                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/register_signup"
+                android:layout_marginTop="20dp"
                 android:background="@color/primaryAppDark"
-                android:textColor="@color/primaryAppText"/>
+                android:text="@string/register_signup"
+                android:textColor="@color/primaryAppText" />
 
             <TextView
                 android:id="@+id/tv_btn_goback"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/primaryAppText2"
+                android:layout_marginTop="10dp"
                 android:text="@string/btn_back"
-                />
+                android:textColor="@color/primaryAppText2"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

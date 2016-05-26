@@ -1,5 +1,6 @@
 package com.learnandroid.appworld;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 /**
  * Contains Views and Handlers for Login Related Functionality
  */
@@ -27,10 +30,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView mSignTV;
     private Button mLoginBtn;
-
+    private AlertDialog.Builder mAlertDialog;
     private DatabaseHelper mDBHelper = new DatabaseHelper(this);
-
-    private String mAuthenticateExistence, mUserNameString;
+    private ActivityManager mActivityManager;
+    private String mAuthenticateExistence, mUserNameString, mPasswordString;
 
 
     @Override
@@ -71,27 +74,58 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mUserNameString = mUsername.getText().toString();
-                String passWordString = mPassword.getText().toString();
+                mPasswordString = mPassword.getText().toString();
                 mAuthenticateExistence = mDBHelper.searchPass(mUserNameString);
 
-                if (passWordString.equals(mAuthenticateExistence)) {
+                if (mPasswordString.equals(mAuthenticateExistence)) {
                     finish();
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                    i.putExtra("Username", mUserNameString);
+                    i.putExtra("Username", mDBHelper.searchFName(mUserNameString));
                     startActivity(i);
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid credentials. " +
                             "Please check username and password", Toast.LENGTH_SHORT)
                             .show();
                 }
-
-
+                
             }
         });
 
-
     }
 
+    @Override
+    public void onBackPressed() {
+        mAlertDialog = new AlertDialog.Builder(LoginActivity.this, R.style.AppCompatAlertDialogStyle);
+        mAlertDialog.setTitle(getString(R.string.exit_app_dialog_title_login));
+        mAlertDialog.setMessage(getString(R.string.exit_app__dialog_detail_login));
+        mAlertDialog.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
+                mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                if (mActivityManager != null) {
+                    List<ActivityManager.AppTask> tasks = mActivityManager.getAppTasks();
+                    if (tasks != null && tasks.size() > 0) {
+                        tasks.get(0).setExcludeFromRecents(true);
+                    }
+                }
+                mAlertDialog = null;
+            }
 
+        });
+        mAlertDialog.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            }
+        });
+        if(mAlertDialog != null) {
+            mAlertDialog.show();
+        } else{
+        super.onBackPressed();
+        }
+
+    }
 }

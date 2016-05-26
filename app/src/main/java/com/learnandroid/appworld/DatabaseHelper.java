@@ -30,6 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SEARCH_QUERY = "select uName, pwd from " +TABLE_NAME;
 
+    private static final String SEARCH_NAME = "select uName, fName from " +TABLE_NAME;
+
     private static final String ANOTHER_QUERY = "select * from " +TABLE_NAME;
 
 
@@ -97,4 +99,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
         return pass;
     }
+
+    public String searchFName(String uSerName) {
+        msqlDB =  this.getReadableDatabase();
+        Cursor cursor = msqlDB.rawQuery(SEARCH_NAME,null);
+        String fname,useR;
+        fname = "no user detected";
+
+        if(cursor.moveToFirst())
+        {
+            do {
+
+                useR = cursor.getString(0);
+
+                if (useR.equals(uSerName)) {
+                    fname = cursor.getString(1);
+                    break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return fname;
+    }
+
 }
