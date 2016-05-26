@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="136dp"
-        android:background="@color/primaryAppDark"
+        android:background="@color/dark_blue"
         android:ems="14"
         android:text="Logout"
         android:textColor="@color/primaryAppText"/>

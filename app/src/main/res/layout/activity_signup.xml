@@ -37,8 +37,9 @@
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:hint="Click here to enter information"
-                android:maxLength="15"
+                android:maxLength="25"
                 android:maxLines="1"
+                android:inputType="text"
                 android:textColor="@color/primaryAppText2"
                 android:textColorHint="@color/primaryAppText3"
                 android:textSize="12sp" />
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:maxLength="15"
                 android:maxLines="1"
+                android:inputType="text"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="12sp" />
 
@@ -106,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:background="@color/primaryAppDark"
+                android:background="@color/dark_blue"
                 android:text="@string/register_signup"
                 android:textColor="@color/primaryAppText" />
 

@@ -26,7 +26,7 @@
                 android:hint="Username"
                 android:textColorHint="@color/primaryAppText3"
                 android:textColor="@color/primaryAppText2"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:maxLength="15"
                 android:maxLines="1"/>
 
@@ -55,7 +55,7 @@
                 android:layout_alignStart="@+id/et_password_login"
                 android:layout_below="@+id/et_password_login"
                 android:layout_marginTop="36dp"
-                android:background="@color/primaryAppDark"
+                android:background="@color/dark_blue"
                 android:textColor="@color/primaryAppText"
                 android:text="Login" />
 

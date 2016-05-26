@@ -22,7 +22,6 @@ public class UserActivity extends AppCompatActivity {
 
     private Intent newIntent;
     AlertDialog.Builder mAlertDialog, mAlert;
-    Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class UserActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.btn_logout_user);
 
         if (mTextUser2 != null) {
-            mTextUser2.setText(mUserName2.toUpperCase());
+            mTextUser2.setText(mUserName2);
         }
     }
 
