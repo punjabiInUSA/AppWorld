@@ -12,4 +12,5 @@
     <string name="exit_app__dialog_detail_login">Are you sure you want to exit application?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
+    <string name="action_menu_logout">Logout</string>
 </resources>

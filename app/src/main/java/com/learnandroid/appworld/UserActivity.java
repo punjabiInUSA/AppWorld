@@ -4,24 +4,28 @@ package com.learnandroid.appworld;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class UserActivity extends AppCompatActivity {
 
     private TextView mTextUser, mTextUser2;
 
-    private Button mButton;
-
     private String mUserName2;
 
     private Intent newIntent;
     AlertDialog.Builder mAlertDialog, mAlert;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +33,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         mUserName2 = getIntent().getStringExtra("Username");
         init();
-        onLogoutClickHandler();
     }
 
     private void init() {
@@ -38,21 +41,9 @@ public class UserActivity extends AppCompatActivity {
 
         mTextUser2 = (TextView) findViewById(R.id.userActivityTVL2);
 
-
-        mButton = (Button) findViewById(R.id.btn_logout_user);
-
         if (mTextUser2 != null) {
             mTextUser2.setText(mUserName2);
         }
-    }
-
-    private void onLogoutClickHandler() {
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLogOffDialog();
-            }
-        });
     }
 
     @Override
@@ -77,6 +68,24 @@ public class UserActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
 
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main_actions, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_logout:
+                showLogOffDialog();
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

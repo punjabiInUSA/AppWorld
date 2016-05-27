@@ -128,4 +128,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+    public void dismissKeyboard(){
+        if (getCurrentFocus() != null) {
+            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+
+    }
 }
