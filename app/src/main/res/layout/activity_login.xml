@@ -12,10 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/layer_above_login">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -95,8 +92,6 @@
                 android:text="@string/alert_text_login"
                 android:id="@+id/tv_login_alert_text"
                 android:visibility="gone"/>
-        </RelativeLayout>
-
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
