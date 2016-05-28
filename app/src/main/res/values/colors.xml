@@ -7,4 +7,5 @@
     <color name="primaryAppText">#FFFFFF</color>
     <color name="primaryAppText2">#212121</color>
     <color name="primaryAppText3">#727272</color>
+    <color name="red">#b71c1c</color>
 </resources>

@@ -8,10 +8,12 @@ import android.hardware.input.InputManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +30,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mUsername, mPassword;
 
-    private TextView mSignTV;
+    private TextView mSignTV,mLoginAlert;
     private Button mLoginBtn;
     private AlertDialog.Builder mAlertDialog;
     private DatabaseHelper mDBHelper = new DatabaseHelper(this);
     private ActivityManager mActivityManager;
     private String mAuthenticateExistence, mUserNameString, mPasswordString;
+    private ImageView mLoginAlertImage;
 
 
     @Override
@@ -46,7 +49,25 @@ public class LoginActivity extends AppCompatActivity {
     private void onViewLoad() {
 
         mUsername = (EditText) findViewById(R.id.et_username_login);
+        mUsername.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideLoginAlert();
+                return false;
+            }
+        });
+
         mPassword = (EditText) findViewById(R.id.et_password_login);
+        mPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideLoginAlert();
+                return false;
+            }
+        });
+        mLoginAlert = (TextView) findViewById(R.id.tv_login_alert_text);
+        mLoginAlertImage = (ImageView) findViewById(R.id.iv_login_alert_);
+        hideLoginAlert();
         loginEventHandler();
         signupEventHandler();
 
@@ -76,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 mUserNameString = mUsername.getText().toString();
                 mPasswordString = mPassword.getText().toString();
                 mAuthenticateExistence = mDBHelper.searchPass(mUserNameString);
-
+                dismissKeyboard();
                 if (mPasswordString.equals(mAuthenticateExistence)) {
                     finish();
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
@@ -84,9 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                     i.putExtra("Username", mDBHelper.searchFName(mUserNameString));
                     startActivity(i);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Invalid credentials. " +
-                            "Please check username and password", Toast.LENGTH_SHORT)
-                            .show();
+                    mLoginAlertImage.setVisibility(View.VISIBLE);
+                    mLoginAlert.setVisibility(View.VISIBLE);
                 }
                 
             }
@@ -129,11 +149,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void dismissKeyboard(){
-        if (getCurrentFocus() != null) {
+
+    /**
+     *  Hides Android Keyboard
+     */
+    private void dismissKeyboard() {
+
+        if (getCurrentFocus() != null) {
             InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            mgr.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            mgr.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    private void hideLoginAlert() {
+            mLoginAlert.setVisibility(View.GONE);
+            mLoginAlertImage.setVisibility(View.GONE);
         }
 
+
+
     }
-}
+

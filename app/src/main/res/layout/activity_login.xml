@@ -12,7 +12,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layer_above_login">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -54,7 +57,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/et_password_login"
                 android:layout_below="@+id/et_password_login"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/dark_blue"
                 android:textColor="@color/primaryAppText"
                 android:text="Login" />
@@ -71,6 +74,29 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/primaryAppText2"
                 android:text="@string/tv_btn_signup_text" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_login_alert_"
+                android:layout_below="@+id/et_password_login"
+                android:src="@drawable/ic_alert_login"
+                android:visibility="gone"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/iv_login_alert_"
+                android:textColor="@color/red"
+                android:layout_alignBottom="@+id/iv_login_alert_"
+                android:paddingBottom="8dp"
+                android:text="@string/alert_text_login"
+                android:id="@+id/tv_login_alert_text"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
