@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideLoginAlert();
-                dismissKeyboard();
                 return false;
             }
         });
@@ -62,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideLoginAlert();
-                dismissKeyboard();
                 return false;
             }
         });
