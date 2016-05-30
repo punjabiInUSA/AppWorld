@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginStart="@dimen/text_label"
                 android:text="@string/full_name"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primaryAppText2" />
@@ -41,6 +42,7 @@
                 android:maxLines="1"
                 android:inputType="text"
                 android:textColor="@color/primaryAppText2"
+                android:layout_marginStart="@dimen/edit_text"
                 android:textColorHint="@color/primaryAppText3"
                 android:textSize="12sp" />
 
@@ -50,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/new_username_signup"
+                android:layout_marginStart="@dimen/text_label"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primaryAppText2" />
 
@@ -58,6 +61,7 @@
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:maxLength="15"
+                android:layout_marginStart="@dimen/edit_text"
                 android:maxLines="1"
                 android:inputType="text"
                 android:textColor="@color/primaryAppText2"
@@ -69,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/password_signup"
+                android:layout_marginStart="@dimen/text_label"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primaryAppText2" />
 
@@ -78,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:maxLength="15"
+                android:layout_marginStart="@dimen/edit_text"
                 android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="12sp" />
@@ -88,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/confirm_password_signup"
+                android:layout_marginStart="@dimen/text_label"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/primaryAppText2" />
 
@@ -96,6 +103,7 @@
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:layout_marginStart="@dimen/edit_text"
                 android:maxLength="15"
                 android:maxLines="1"
                 android:textColor="@color/primaryAppText2"
@@ -107,7 +115,7 @@
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/dark_blue"
                 android:text="@string/register_signup"
                 android:textColor="@color/primaryAppText" />
@@ -121,6 +129,7 @@
                 android:text="@string/btn_back"
                 android:textColor="@color/primaryAppText2"
                 android:textSize="16sp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

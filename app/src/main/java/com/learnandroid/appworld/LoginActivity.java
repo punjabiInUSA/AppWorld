@@ -25,7 +25,6 @@ import java.util.List;
  * Contains Views and Handlers for Login Related Functionality
  */
 
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mUsername, mPassword;
@@ -53,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideLoginAlert();
+                dismissKeyboard();
                 return false;
             }
         });
@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideLoginAlert();
+                dismissKeyboard();
                 return false;
             }
         });
