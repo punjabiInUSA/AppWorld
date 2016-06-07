@@ -1,10 +1,8 @@
 package com.learnandroid.appworld;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,16 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class UserActivity extends AppCompatActivity {
 
     private TextView mTextUser, mTextUser2;
 
-    private String mUserName2;
+    private String mFullName, mUserName;
 
     private Intent newIntent;
     AlertDialog.Builder mAlertDialog, mAlert;
@@ -31,7 +26,8 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        mUserName2 = getIntent().getStringExtra("Username");
+        mFullName = getIntent().getStringExtra("FullName");
+        setTitle(getString(R.string.empty_string));
         init();
     }
 
@@ -42,7 +38,7 @@ public class UserActivity extends AppCompatActivity {
         mTextUser2 = (TextView) findViewById(R.id.userActivityTVL2);
 
         if (mTextUser2 != null) {
-            mTextUser2.setText(mUserName2);
+            mTextUser2.setText(mFullName);
         }
     }
 

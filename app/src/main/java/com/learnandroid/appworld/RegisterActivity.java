@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void init() {
 
+        setTitle(getString(R.string.empty_string));
 
         mFirstName = (EditText) findViewById(R.id.et_name_signup);
 
@@ -263,5 +265,17 @@ public class RegisterActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         navigateToLogin();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                navigateToLogin();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

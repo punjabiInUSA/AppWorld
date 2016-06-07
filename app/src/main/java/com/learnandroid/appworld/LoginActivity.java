@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText mUsername, mPassword;
 
-    private TextView mSignTV,mLoginAlert;
+    private TextView mSignTV,mLoginAlert, mForgotPass;
     private Button mLoginBtn;
     private AlertDialog.Builder mAlertDialog;
     private DatabaseHelper mDBHelper = new DatabaseHelper(this);
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onViewLoad() {
 
+        setTitle(getString(R.string.empty_string));
         mUsername = (EditText) findViewById(R.id.et_username_login);
         mUsername.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -101,7 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                     Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
-                    i.putExtra("Username", mDBHelper.searchFName(mUserNameString));
+                    i.putExtra("FullName", mDBHelper.searchFName(mUserNameString));
+                    i.putExtra("UserName", mUserNameString);
                     startActivity(i);
                 } else {
                     mLoginAlertImage.setVisibility(View.VISIBLE);
@@ -165,8 +167,6 @@ public class LoginActivity extends AppCompatActivity {
             mLoginAlert.setVisibility(View.GONE);
             mLoginAlertImage.setVisibility(View.GONE);
         }
-
-
 
     }
 
