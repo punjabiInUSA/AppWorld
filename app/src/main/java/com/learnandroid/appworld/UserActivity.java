@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.CursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -31,7 +30,7 @@ public class UserActivity extends AppCompatActivity implements
     private String mFullName, mUserName;
 
     private Intent newIntent;
-    AlertDialog.Builder mAlertDialog, mAlert;
+    AlertDialog.Builder mAlertDialog, mAlert, mDeleteNotesDialog;
 
     private Cursor mCursor;
 
@@ -44,14 +43,9 @@ public class UserActivity extends AppCompatActivity implements
         mFullName = getIntent().getStringExtra("FullName");
         setTitle(getString(R.string.empty_string));
         init();
-        insertNote();
+        insertNote("New Note");
 
-        String[] from = {NotesDatabaseHelper.NOTE_TEXT};
-        int[] to = {android.R.id.text1};
-
-
-        mCursorAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_1, null, from, to, 0);
+        mCursorAdapter = new NotesCustomCursorAdapter(this, null, 0);
 
         ListView listView = (ListView) findViewById(android.R.id.list);
         if (listView != null) {
@@ -61,9 +55,9 @@ public class UserActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(0, null, UserActivity.this);
     }
 
-    private void insertNote() {
+    private void insertNote(String newNote) {
         ContentValues values = new ContentValues();
-        values.put(NotesDatabaseHelper.NOTE_TEXT, "New Note");
+        values.put(NotesDatabaseHelper.NOTE_TEXT, newNote);
         Uri noteUri = getContentResolver().insert(NotesContentProvider.CONTENT_URI, values);
         if (noteUri != null) {
             Log.d("UserActivity", "Inserted Note" + noteUri.getLastPathSegment());
@@ -123,9 +117,56 @@ public class UserActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.action_menu_logout:
                 showLogOffDialog();
+                break;
+            case R.id.action_sample_data:
+                insertSampleData();
+                break;
+            case R.id.action_delete_data:
+                deleteAllNotes();
+                break;
             default:
-                return super.onOptionsItemSelected(item);
         }
+                return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllNotes() {
+        mDeleteNotesDialog = new AlertDialog.Builder(this,R.style.AppCompatAlertDialogStyle);
+        mDeleteNotesDialog.setTitle("CAUTION: DELETING NOTES");
+        mDeleteNotesDialog.setMessage("Are you sure you want to delete all notes?");
+        mDeleteNotesDialog.setPositiveButton(getString(R.string.dialog_yes),
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getContentResolver().delete(NotesContentProvider.CONTENT_URI, null, null);
+                restartLoader();
+                Toast.makeText(UserActivity.this, "All notes deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mDeleteNotesDialog.setNegativeButton(getString(R.string.dialog_no),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        if (mDeleteNotesDialog != null) {
+            mDeleteNotesDialog.show();
+        }
+
+    }
+
+    private void insertSampleData() {
+        insertNote("New Simple Note");
+        insertNote("New Multi-Line \n Note");
+        insertNote("Very long note that exceeds the width of the screen. Be sure to check this one " +
+                "out since it creates ellipses at the end");
+        restartLoader();
+
+    }
+
+    private void restartLoader() {
+        getLoaderManager().restartLoader(0, null, this);
     }
 
     private void showLogOffDialog() {

@@ -9,4 +9,14 @@
         android:icon="@drawable/ic_action_name_white"
         app:showAsAction="always|withText"
         tools:ignore="AppCompatResource" />
+
+    <item android:id="@+id/action_sample_data"
+        android:title="Sample notes"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
+
+    <item android:id="@+id/action_delete_data"
+        android:title="Delete notes"
+        android:showAsAction="never"
+        tools:ignore="AppCompatResource" />
 </menu>
