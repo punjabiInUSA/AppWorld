@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 public class UserActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final int EDITOR_REQUEST_CODE = 1199;
     private TextView mTextUser, mTextUser2;
 
     private String mFullName, mUserName;
@@ -35,6 +38,8 @@ public class UserActivity extends AppCompatActivity implements
     private Cursor mCursor;
 
     private CursorAdapter mCursorAdapter;
+
+    private FloatingActionButton mAddNoteBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,9 +79,22 @@ public class UserActivity extends AppCompatActivity implements
 //
 //        mTextUser2 = (TextView) findViewById(R.id.userActivityTVL2);
 
+        mAddNoteBtn = (FloatingActionButton) findViewById(R.id.btn_add_new_note);
+
+        onAddNoteClickEvent();
+
         if (mTextUser2 != null) {
             mTextUser2.setText(mFullName);
         }
+    }
+
+    private void onAddNoteClickEvent() {
+        mAddNoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchEditNotesActivity();
+            }
+        });
     }
 
     @Override
@@ -209,5 +227,10 @@ public class UserActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mCursorAdapter.swapCursor(null);
+    }
+
+    private void launchEditNotesActivity() {
+        Intent editorActivity =  new Intent(this, EditNotesActivity.class);
+        startActivityForResult(editorActivity, EDITOR_REQUEST_CODE);
     }
 }

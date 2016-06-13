@@ -31,6 +31,9 @@
             android:name=".NotesContentProvider"
             android:authorities="com.learnandroid.appworld.notescontentprovider"
             android:exported="false" />
+
+        <activity android:name=".EditNotesActivity"
+            android:parentActivityName=".UserActivity"/>
     </application>
 
 </manifest>
