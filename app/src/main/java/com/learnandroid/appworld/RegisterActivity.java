@@ -226,13 +226,14 @@ public class RegisterActivity extends AppCompatActivity {
                               mUserName.setText(muserNameString);
 
                           } else {
-                              userInfo con = new userInfo();
-                              con.setName(mfistNameString);
-                              con.setUsername(muserNameString);
-                              con.setPass(mpasswordString);
-                              if (mDBHelper != null && !mfistNameString.isEmpty() && !muserNameString.isEmpty()
+                              UserInfoModel uInfo = new UserInfoModel();
+                              uInfo.setName(mfistNameString);
+                              uInfo.setUsername(muserNameString);
+                              uInfo.setPass(mpasswordString);
+                              if (mDBHelper != null && !mfistNameString.isEmpty()
+                                      && !muserNameString.isEmpty()
                                       && !mpasswordString.isEmpty() && !mconPassString.isEmpty()) {
-                                  mDBHelper.insertContactInfo(con);
+                                  mDBHelper.insertContactInfo(uInfo);
                                   mFirstName.getText().clear();
                                   mUserName.getText().clear();
                                   mPassword.getText().clear();

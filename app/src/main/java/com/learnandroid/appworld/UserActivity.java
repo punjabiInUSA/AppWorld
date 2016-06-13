@@ -1,15 +1,25 @@
 package com.learnandroid.appworld;
 
 
+import android.app.LoaderManager;
+import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.CursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class UserActivity extends AppCompatActivity {
@@ -21,6 +31,9 @@ public class UserActivity extends AppCompatActivity {
     private Intent newIntent;
     AlertDialog.Builder mAlertDialog, mAlert;
 
+    private Cursor mCursor;
+
+    private CursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,13 +42,43 @@ public class UserActivity extends AppCompatActivity {
         mFullName = getIntent().getStringExtra("FullName");
         setTitle(getString(R.string.empty_string));
         init();
+        insertNote();
+
+        mCursor = getContentResolver().query(NotesContentProvider.CONTENT_URI,
+                NotesDatabaseHelper.ALL_COLUMNS, null, null, null, null);
+
+        String[] from = {NotesDatabaseHelper.NOTE_TEXT};
+        int[] to = {android.R.id.text1};
+
+
+        mCursorAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1, mCursor, from, to, 0);
+
+        ListView listView = (ListView) findViewById(android.R.id.list);
+        if (listView != null) {
+            listView.setAdapter(mCursorAdapter);
+        }
+
+    }
+
+    private void insertNote() {
+        ContentValues values = new ContentValues();
+        values.put(NotesDatabaseHelper.NOTE_TEXT, "New Note");
+        Uri noteUri = getContentResolver().insert(NotesContentProvider.CONTENT_URI, values);
+        if (noteUri != null) {
+            Log.d("UserActivity", "Inserted Note" + noteUri.getLastPathSegment());
+        }
+
+        if (mCursor != null) {
+            mCursor.close();
+        }
     }
 
     private void init() {
 
-        mTextUser = (TextView) findViewById(R.id.userActivityTVL);
-
-        mTextUser2 = (TextView) findViewById(R.id.userActivityTVL2);
+//        mTextUser = (TextView) findViewById(R.id.userActivityTVL);
+//
+//        mTextUser2 = (TextView) findViewById(R.id.userActivityTVL2);
 
         if (mTextUser2 != null) {
             mTextUser2.setText(mFullName);

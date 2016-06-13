@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertContactInfo(userInfo usrinfo) {
+    public void insertContactInfo(UserInfoModel usrinfo) {
 
         msqlDB = this.getWritableDatabase();
 

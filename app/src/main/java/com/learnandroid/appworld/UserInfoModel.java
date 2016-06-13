@@ -1,7 +1,7 @@
 package com.learnandroid.appworld;
 
 
-public class userInfo {
+public class UserInfoModel {
 
     private int id;
 

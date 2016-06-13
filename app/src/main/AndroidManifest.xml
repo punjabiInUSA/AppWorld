@@ -27,6 +27,10 @@
             android:parentActivityName=".LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <provider
+            android:name=".NotesContentProvider"
+            android:authorities="com.learnandroid.appworld.notescontentprovider"
+            android:exported="false" />
     </application>
 
 </manifest>
