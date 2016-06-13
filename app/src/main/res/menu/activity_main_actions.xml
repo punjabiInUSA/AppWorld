@@ -19,4 +19,10 @@
         android:title="Delete notes"
         android:showAsAction="never"
         tools:ignore="AppCompatResource" />
+
+    <item android:id="@+id/action_delete_note"
+        android:title="Delete"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_delete"
+        tools:ignore = "AppCompatResource"/>
 </menu>

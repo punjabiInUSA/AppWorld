@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,15 @@ public class UserActivity extends AppCompatActivity implements
             listView.setAdapter(mCursorAdapter);
         }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(UserActivity.this, EditNotesActivity.class);
+                Uri uri =  Uri.parse(NotesContentProvider.CONTENT_URI + "/" + id);
+                intent.putExtra(NotesContentProvider.CONTENT_TYPE, uri);
+                startActivityForResult(intent, EDITOR_REQUEST_CODE);
+            }
+        });
         getLoaderManager().initLoader(0, null, UserActivity.this);
     }
 
@@ -127,6 +137,7 @@ public class UserActivity extends AppCompatActivity implements
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_main_actions, menu);
 
+        menu.findItem(R.id.action_delete_note).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 

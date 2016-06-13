@@ -6,7 +6,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 
 public class NotesContentProvider extends ContentProvider {
@@ -43,6 +42,10 @@ public class NotesContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
+        if( uriMatcher.match(uri) == NOTES_ID ) {
+            selection = NotesDatabaseHelper.NOTE_ID + "=" + uri.getLastPathSegment();
+        }
+
         return mDatabase.query(NotesDatabaseHelper.TABLE_NOTES, NotesDatabaseHelper.ALL_COLUMNS,
                 selection, null, null, null, NotesDatabaseHelper.NOTE_CREATED + " DESC");
     }
