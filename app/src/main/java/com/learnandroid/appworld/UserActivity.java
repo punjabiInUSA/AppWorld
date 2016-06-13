@@ -233,4 +233,11 @@ public class UserActivity extends AppCompatActivity implements
         Intent editorActivity =  new Intent(this, EditNotesActivity.class);
         startActivityForResult(editorActivity, EDITOR_REQUEST_CODE);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EDITOR_REQUEST_CODE && resultCode == RESULT_OK) {
+            restartLoader();
+        }
+    }
 }

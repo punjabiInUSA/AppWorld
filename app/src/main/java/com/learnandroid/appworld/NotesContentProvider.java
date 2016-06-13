@@ -21,6 +21,7 @@ public class NotesContentProvider extends ContentProvider {
 
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
+    public static final String CONTENT_TYPE = "NOTE";
     static {
         uriMatcher.addURI(AUTHORITY, BASE_PATH, NOTES);
         uriMatcher.addURI(AUTHORITY, BASE_PATH + "/#", NOTES_ID);
@@ -28,6 +29,8 @@ public class NotesContentProvider extends ContentProvider {
 
     SQLiteDatabase mDatabase;
     NotesDatabaseHelper mNotesHelper;
+
+
 
     @Override
     public boolean onCreate() {
