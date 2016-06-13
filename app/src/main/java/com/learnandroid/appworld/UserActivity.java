@@ -21,8 +21,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private TextView mTextUser, mTextUser2;
 
@@ -44,21 +46,19 @@ public class UserActivity extends AppCompatActivity {
         init();
         insertNote();
 
-        mCursor = getContentResolver().query(NotesContentProvider.CONTENT_URI,
-                NotesDatabaseHelper.ALL_COLUMNS, null, null, null, null);
-
         String[] from = {NotesDatabaseHelper.NOTE_TEXT};
         int[] to = {android.R.id.text1};
 
 
         mCursorAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_1, mCursor, from, to, 0);
+                android.R.layout.simple_list_item_1, null, from, to, 0);
 
         ListView listView = (ListView) findViewById(android.R.id.list);
         if (listView != null) {
             listView.setAdapter(mCursorAdapter);
         }
 
+        getLoaderManager().initLoader(0, null, UserActivity.this);
     }
 
     private void insertNote() {
@@ -67,8 +67,8 @@ public class UserActivity extends AppCompatActivity {
         Uri noteUri = getContentResolver().insert(NotesContentProvider.CONTENT_URI, values);
         if (noteUri != null) {
             Log.d("UserActivity", "Inserted Note" + noteUri.getLastPathSegment());
+            Toast.makeText(UserActivity.this, "New note added", Toast.LENGTH_SHORT).show();
         }
-
         if (mCursor != null) {
             mCursor.close();
         }
@@ -153,5 +153,20 @@ public class UserActivity extends AppCompatActivity {
         newIntent = new Intent(UserActivity.this, LoginActivity.class);
         startActivity(newIntent);
 
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this,NotesContentProvider.CONTENT_URI, null, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mCursorAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCursorAdapter.swapCursor(null);
     }
 }
