@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                 dismissKeyboard();
                 if (mPasswordString.equals(mAuthenticateExistence)) {
                     finish();
-                    Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(LoginActivity.this, UserActivity.class);
                     i.putExtra("FullName", mDBHelper.searchFName(mUserNameString));
                     i.putExtra("UserName", mUserNameString);

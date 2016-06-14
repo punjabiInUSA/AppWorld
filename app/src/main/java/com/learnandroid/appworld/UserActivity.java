@@ -15,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,9 +48,9 @@ public class UserActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         mFullName = getIntent().getStringExtra("FullName");
-        setTitle(getString(R.string.empty_string));
+        mUserName = getIntent().getStringExtra("UserName");
+        setTitle("Signed in:"+mFullName+"("+mUserName+")");
         init();
-        insertNote("New Note");
 
         mCursorAdapter = new NotesCustomCursorAdapter(this, null, 0);
 
@@ -76,7 +77,6 @@ public class UserActivity extends AppCompatActivity implements
         Uri noteUri = getContentResolver().insert(NotesContentProvider.CONTENT_URI, values);
         if (noteUri != null) {
             Log.d("UserActivity", "Inserted Note" + noteUri.getLastPathSegment());
-            Toast.makeText(UserActivity.this, "New note added", Toast.LENGTH_SHORT).show();
         }
         if (mCursor != null) {
             mCursor.close();
@@ -191,6 +191,7 @@ public class UserActivity extends AppCompatActivity implements
         insertNote("Very long note that exceeds the width of the screen. Be sure to check this one " +
                 "out since it creates ellipses at the end");
         restartLoader();
+        Toast.makeText(UserActivity.this, "Sample data added", Toast.LENGTH_SHORT).show();
 
     }
 
