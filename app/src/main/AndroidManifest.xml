@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +20,10 @@
         </activity>
         <activity
             android:name=".UserActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".RegisterActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:parentActivityName=".LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -32,8 +32,10 @@
             android:authorities="com.learnandroid.appworld.notescontentprovider"
             android:exported="false" />
 
-        <activity android:name=".EditNotesActivity"
-            android:parentActivityName=".UserActivity"/>
+        <activity
+            android:name=".EditNotesActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".UserActivity" />
     </application>
 
 </manifest>
