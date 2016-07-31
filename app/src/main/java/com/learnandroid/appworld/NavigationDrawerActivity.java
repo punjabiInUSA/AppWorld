@@ -4,6 +4,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,21 +48,26 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                     case 0:
                         Toast.makeText(NavigationDrawerActivity.this, "Time for iOS",
                                 Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(mDrawerList);
                         break;
                     case 1:
                         Toast.makeText(NavigationDrawerActivity.this, "Time for Android",
                                 Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(mDrawerList);
                         break;
                     case 2:
                         Toast.makeText(NavigationDrawerActivity.this, "Time for MAC OS",
                                 Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(mDrawerList);
                         break;
                     case 3:
                         Toast.makeText(NavigationDrawerActivity.this, "Linux is best",
                                 Toast.LENGTH_SHORT).show();
+
                     case 4:
                         Toast.makeText(NavigationDrawerActivity.this, "You've reached the best",
                                 Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(mDrawerList);
                 }
             }
         });
@@ -122,6 +128,5 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }
