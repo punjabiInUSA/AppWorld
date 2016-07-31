@@ -36,6 +36,7 @@
             android:name=".EditNotesActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".UserActivity" />
+        <activity android:name=".NavigationDrawerActivity"></activity>
     </application>
 
 </manifest>

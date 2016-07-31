@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 dismissKeyboard();
                 if (mPasswordString.equals(mAuthenticateExistence)) {
                     finish();
-                    Intent i = new Intent(LoginActivity.this, UserActivity.class);
+                    Intent i = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                     i.putExtra("FullName", mDBHelper.searchFName(mUserNameString));
                     i.putExtra("UserName", mUserNameString);
                     startActivity(i);
