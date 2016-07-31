@@ -119,14 +119,35 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(mDrawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        switch(item.getItemId()){
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_actions,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.action_delete_note:
+                Toast.makeText(NavigationDrawerActivity.this, "Delete Requested",
+                        Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_menu_logout:
+                Toast.makeText(NavigationDrawerActivity.this, "Logout Requested",
+                        Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                mDrawerToggle.onOptionsItemSelected(item);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.action_delete_note).setVisible(!drawerOpen);
+        menu.findItem(R.id.action_menu_logout).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
 }
