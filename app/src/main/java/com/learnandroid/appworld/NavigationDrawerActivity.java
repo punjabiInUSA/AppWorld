@@ -1,9 +1,14 @@
 package com.learnandroid.appworld;
 
+import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,66 +17,33 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class NavigationDrawerActivity extends AppCompatActivity {
+public class NavigationDrawerActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener {
 
-    private ListView mDrawerList;
+
     private ArrayAdapter<String> mAdapter;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-        mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        addDrawerListItems();
-        onDrawerItemClickHandler();
         enableHomeButton();
         setupHamburgerIcon();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        enableHomeButton();
+        setupHamburgerIcon();
+        NavigationView navView = (NavigationView) findViewById(R.id.navigationViewLayout);
+        navView.setNavigationItemSelectedListener(this);
 
     }
 
 
-    public void addDrawerListItems() {
-        String[] osArray = {"Android", "iOS", "Windows", "OSX", "Linux"};
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
-        mDrawerList.setAdapter(mAdapter);
-    }
 
-
-    public void onDrawerItemClickHandler() {
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        Toast.makeText(NavigationDrawerActivity.this, "Time for iOS",
-                                Toast.LENGTH_SHORT).show();
-                        mDrawerLayout.closeDrawer(mDrawerList);
-                        break;
-                    case 1:
-                        Toast.makeText(NavigationDrawerActivity.this, "Time for Android",
-                                Toast.LENGTH_SHORT).show();
-                        mDrawerLayout.closeDrawer(mDrawerList);
-                        break;
-                    case 2:
-                        Toast.makeText(NavigationDrawerActivity.this, "Time for MAC OS",
-                                Toast.LENGTH_SHORT).show();
-                        mDrawerLayout.closeDrawer(mDrawerList);
-                        break;
-                    case 3:
-                        Toast.makeText(NavigationDrawerActivity.this, "Linux is best",
-                                Toast.LENGTH_SHORT).show();
-
-                    case 4:
-                        Toast.makeText(NavigationDrawerActivity.this, "You've reached the best",
-                                Toast.LENGTH_SHORT).show();
-                        mDrawerLayout.closeDrawer(mDrawerList);
-                }
-            }
-        });
-    }
 
     /**
      * Enables Android Home Button, otherwise known as UP button.
@@ -145,9 +117,22 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_delete_note).setVisible(!drawerOpen);
-        menu.findItem(R.id.action_menu_logout).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.nav_new_note:
+                Intent i = new Intent(this, UserActivity.class);
+                startActivity(i);
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_help:
+                Toast.makeText(NavigationDrawerActivity.this,
+                        "help is on the way", Toast.LENGTH_SHORT).show();
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+        return false;
     }
 }
