@@ -12,11 +12,7 @@
             android:name=".LoginActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".UserActivity"
@@ -36,7 +32,16 @@
             android:name=".EditNotesActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".UserActivity" />
-        <activity android:name=".NavigationDrawerActivity"></activity>
+        <activity android:name=".NavigationDrawerActivity" />
+        <activity android:name=".sharedpffrence.DemoLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".sharedpffrence.SecondActivity" />
     </application>
 
 </manifest>
