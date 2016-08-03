@@ -84,41 +84,4 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
-
-//
-//    public String getPin(){
-//        Pin pin = getNewPin();
-//        if (pin == null){
-//            return generatePin();
-//        }
-//        Date currentDate = new Date();
-//        long timeDiff = currentDate.getTime() - pin.getCreationDate().getTime();
-//        if (TimeUnit.MILLISECONDS.toHours(timeDiff) > 24){
-//            return generatePin();
-//        }
-//        else{
-//            return pin.getPin();
-//        }
-//    }
-//
-//    public void savePin(Pin pin){
-//
-//        SharedPreferences preferences = mContext.getSharedPreferences("MyData",Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = preferences.edit();
-//                editor.putString("PinKey", pin.getPin());
-//        editor.putLong("DateKey",pin.getCreationDate().getTime());
-//        editor.apply();
-//
-//    }
-//
-//    public Pin getNewPin(){
-//        if(mPreferences.contains("PinKey")) {
-//            Date date = new Date(mPreferences.getLong("DateKey", 0));
-//            String pin = mPreferences.getString("PinKey","");
-//            return new Pin(date, pin);
-//        }
-//        return null;
-//    }
-
-
 }
