@@ -11,9 +11,7 @@
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity
             android:name=".UserActivity"
             android:launchMode="singleTask" />
@@ -39,9 +37,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".sharedpffrence.SecondActivity" />
+        <activity android:name=".sharedpffrence.ThirdActivity"/>
     </application>
 
 </manifest>

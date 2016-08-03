@@ -28,4 +28,29 @@
         android:textSize="23sp"/>
 
 
+    <TextView
+        android:id="@+id/second_encrypted_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="encrypted key"
+        android:ems="10"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="190dp"
+        android:textSize="20sp"/>
+
+
+    <TextView
+        android:id="@+id/second_pin_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_alignParentBottom="true"
+        android:textSize="20sp"
+        android:hint="RESET PIN"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"/>
+
+
+
 </RelativeLayout>

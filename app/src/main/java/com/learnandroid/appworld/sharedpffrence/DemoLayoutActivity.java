@@ -3,9 +3,8 @@ package com.learnandroid.appworld.sharedpffrence;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnandroid.appworld.R;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class DemoLayoutActivity extends AppCompatActivity {
 
@@ -46,26 +41,33 @@ public class DemoLayoutActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DemoLayoutActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DemoLayoutActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
                 saveTextValues();
+                if(!mDetail1.getText().toString().isEmpty()){
                 Intent i = new Intent(DemoLayoutActivity.this,SecondActivity.class);
                 startActivity(i);
+                }
             }
         });
 
     }
 
+
     public void saveTextValues(){
      textValue = mDetail1.getText().toString();
         textValue2 = mDetail2.getText().toString();
-        if(!mDetail1.getText().toString().equals(textValue)){
+        if(mDetail1.getText().toString().equals(textValue)
+                &&mDetail2.getText().toString().equals(textValue2)){
             //Mydata below refers to the filename that is stored as shared preferences
             //Mode private will allow only this application to be able to read data.
             SharedPreferences preferences = getSharedPreferences("Mydata", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("FirstValue", textValue);
             editor.putString("SecondValue",textValue2);
+            Toast.makeText(DemoLayoutActivity.this, "Text values received", Toast.LENGTH_SHORT).show();
             editor.apply();
+        }else {
+            Toast.makeText(DemoLayoutActivity.this, "Values exist", Toast.LENGTH_SHORT).show();
         }
     }
 
